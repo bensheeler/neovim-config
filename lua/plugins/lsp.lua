@@ -1,7 +1,12 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     config = function()
+      vim.lsp.config("roslyn", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(event)
           local opts = { buffer = event.buf }
@@ -17,6 +22,13 @@ return {
         end,
       })
     end,
+  },
+  {
+    "saghen/blink.cmp",
+    version = "1.*",
+    opts = {
+      keymap = { preset = "default" },
+    },
   },
   {
     "seblyng/roslyn.nvim",
