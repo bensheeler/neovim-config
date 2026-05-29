@@ -3,6 +3,21 @@ return {
     "tpope/vim-fugitive",
   },
   {
+    "NeogitOrg/neogit",
+    cmd = "Neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("neogit").setup({
+        kind = "floating",
+      })
+    end,
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Neogit" },
+    },
+  },
+  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
