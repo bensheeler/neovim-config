@@ -9,6 +9,16 @@ return {
 	config = function()
 		require("neo-tree").setup({
 			close_if_last_window = true,
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          never_show = {
+            ".git",
+          }
+        }
+      }
 		})
 
 		vim.api.nvim_create_autocmd("VimEnter", {
@@ -17,7 +27,7 @@ return {
 			end,
 		})
 
-		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
+		vim.keymap.set("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {})
 		vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", {})
 	end,
 }
